@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8fba53431fe40cb3420d8838591062e730458c1ee20176b04b0bade6c34de7df
+-- hash: f7a9c69d825eaf1801b5f5ddbe0e82a0b07e20571146f8071d6ed6a356f3629f
 
 name:           yorgey-cis194
 version:        0.1.0.0
@@ -22,6 +22,7 @@ build-type:     Simple
 extra-source-files:
     CHANGELOG.md
     README.md
+    doc/01-intro.lhs
     doc/01-intro.pdf
     doc/style.pdf
 
@@ -31,6 +32,7 @@ source-repository head
 
 library
   exposed-modules:
+      Intro
       MyLib
   other-modules:
       Paths_yorgey_cis194

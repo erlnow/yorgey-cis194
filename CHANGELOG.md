@@ -4,7 +4,13 @@
 
 ### Added
 * doc/style.pdf
-* doc/01-intro.pdf
+* doc/01-intro.lhs
+* doc/images/pure.jpg
+* doc/images/relax.jpg
+* doc/images/static.jpg
+* doc/images/function-machine.png
+* doc/images/haskell-logo-small.png
+* src/Intro.lhs
 
 ### Changed
 * package.yaml
