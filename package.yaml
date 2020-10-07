@@ -1,7 +1,7 @@
 name:                yorgey-cis194
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            "Brent Yorgey CIS 194: Introduction to Haskell (Spring 2013)"
-description:         "Please see the README on GitHub at <https://github.com/erlnow/yorge-cis194#readme>"
+description:         "Please see the README on GitHub at <https://github.com/erlnow/yorgey-cis194#readme>"
 # homepage:            https://github.com/erlnow/yorgey-cis194#readme
 # -- bug-reports:
 github:              "erlnow/yorgey-cis194"

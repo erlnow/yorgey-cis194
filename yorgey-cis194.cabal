@@ -4,12 +4,12 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f7a9c69d825eaf1801b5f5ddbe0e82a0b07e20571146f8071d6ed6a356f3629f
+-- hash: 91f0d60fb5bcab4e7c66c8c76e34f98396e8cb13d7b5b68d3004b5a31d7a40db
 
 name:           yorgey-cis194
-version:        0.1.0.0
+version:        0.1.0.1
 synopsis:       Brent Yorgey CIS 194: Introduction to Haskell (Spring 2013)
-description:    Please see the README on GitHub at <https://github.com/erlnow/yorge-cis194#readme>
+description:    Please see the README on GitHub at <https://github.com/erlnow/yorgey-cis194#readme>
 category:       Learning
 homepage:       https://github.com/erlnow/yorgey-cis194#readme
 bug-reports:    https://github.com/erlnow/yorgey-cis194/issues
