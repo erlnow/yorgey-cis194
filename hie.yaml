@@ -1,0 +1,13 @@
+cradle:
+  cabal:
+    - path: "src"
+      component: "lib:yorgey-cis194"
+
+    - path: "app/Main.hs"
+      component: "yorgey-cis194:exe:cabal-sample"
+
+    - path: "app/Paths_yorgey_cis194.hs"
+      component: "yorgey-cis194:exe:cabal-sample"
+
+    - path: "test"
+      component: "yorgey-cis194:test:cabal-sample-test"

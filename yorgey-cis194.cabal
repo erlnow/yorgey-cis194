@@ -1,0 +1,67 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 8fba53431fe40cb3420d8838591062e730458c1ee20176b04b0bade6c34de7df
+
+name:           yorgey-cis194
+version:        0.1.0.0
+synopsis:       Brent Yorgey CIS 194: Introduction to Haskell (Spring 2013)
+description:    Please see the README on GitHub at <https://github.com/erlnow/yorge-cis194#readme>
+category:       Learning
+homepage:       https://github.com/erlnow/yorgey-cis194#readme
+bug-reports:    https://github.com/erlnow/yorgey-cis194/issues
+author:         Eduardo Ramón Lestau
+maintainer:     erlestau@gmail.com
+copyright:      (c) 2020-2030 Eduardo Ramón Lestau
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    CHANGELOG.md
+    README.md
+    doc/01-intro.pdf
+    doc/style.pdf
+
+source-repository head
+  type: git
+  location: https://github.com/erlnow/yorgey-cis194
+
+library
+  exposed-modules:
+      MyLib
+  other-modules:
+      Paths_yorgey_cis194
+  hs-source-dirs:
+      src
+  ghc-options: -Wall
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable cabal-sample
+  main-is: Main.hs
+  other-modules:
+      Paths_yorgey_cis194
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , yorgey-cis194
+  default-language: Haskell2010
+
+test-suite cabal-sample-test
+  type: exitcode-stdio-1.0
+  main-is: MyLibTest.hs
+  other-modules:
+      Paths_yorgey_cis194
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , yorgey-cis194
+  default-language: Haskell2010
