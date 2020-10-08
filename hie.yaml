@@ -11,3 +11,6 @@ cradle:
 
     - path: "test"
       component: "yorgey-cis194:test:cabal-sample-test"
+
+    - path: "test/cis194"
+      component: "yorgey-cis194:test:cis194-test"

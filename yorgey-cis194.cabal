@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 91f0d60fb5bcab4e7c66c8c76e34f98396e8cb13d7b5b68d3004b5a31d7a40db
+-- hash: 74c4991d320946100e2c708cd7756f26f2fde0c7efec400b2be0eb58e1f18132
 
 name:           yorgey-cis194
 version:        0.1.0.1
@@ -65,5 +65,21 @@ test-suite cabal-sample-test
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , yorgey-cis194
+  default-language: Haskell2010
+
+test-suite cis194-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_yorgey_cis194
+  hs-source-dirs:
+      test/cis194
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-tool-depends:
+      hspec-discover:hspec-discover
+  build-depends:
+      base >=4.7 && <5
+    , hspec ==2.*
     , yorgey-cis194
   default-language: Haskell2010

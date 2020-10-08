@@ -11,6 +11,8 @@
 * doc/images/function-machine.png
 * doc/images/haskell-logo-small.png
 * src/Intro.lhs
+* test/cis194/Spec.hs
+* test/cis194/IntroSpec.hs
 
 ### Changed
 * package.yaml
