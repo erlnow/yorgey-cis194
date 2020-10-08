@@ -7,18 +7,25 @@ Haskel Basics
 
 This functions are copied from `doc/01-intro.lhs` and packed as a module.
 
+> -- |
+> -- Module : Intro
+> -- Description: Yorgey's CIS 194, 01 Introduction to Haskell
+> -- Copyright: (c) Eduardo Ramón Lestau, 2020
+> -- LICENSE: BSD3
+> -- Mantainer: erlestau@gmail.com
+> -- Portability: POSIX
+> -- 
+> -- Functions defined in `01-Intro.lhs` packed as a module.
+> --
+
 > module Intro where
 
-> -- Compute the sum of the integers from 1 to n.
+> -- |Compute the sum of the integers from 1 to n.
 > sumtorial :: Integer -> Integer
 > sumtorial 0 = 0
 > sumtorial n = n + sumtorial (n-1)
 
-> hailstone :: Integer -> Integer
-> hailstone n
->   | n `mod` 2 == 0 = n `div` 2
->   | otherwise      = 3*n + 1
-
+> -- |Example of /pattern matching/ with /guards/
 > foo :: Integer -> Integer
 > foo 0 = 16
 > foo 1 
@@ -36,32 +43,42 @@ This functions are copied from `doc/01-intro.lhs` and packed as a module.
 
 This *works*, but it is much too complicated.  Can you see why?
 
-> -- Decides if a `Integer` is even
+> -- |Decides if a 'Integer' is even
 > isEven :: Integer -> Bool
 > isEven n = n `mod` 2 == 0
 
+> -- |Sums the elements in a pair
 > sumPair :: (Int,Int) -> Int
 > sumPair (x,y) = x + y
 
+> -- |Sum of three 'Int''s
 > f :: Int -> Int -> Int -> Int
 > f x y z = x + y + z
 
-> -- Generate the sequence of hailstone iterations from a starting number.
-> hailstoneSeq :: Integer -> [Integer]
-> hailstoneSeq 1 = [1]
-> hailstoneSeq n = n : hailstoneSeq (hailstone n)
-
-> -- Compute the length of a list of Integers.
-> intListLength :: [Integer] -> Integer
-> intListLength []     = 0
-> intListLength (_:xs) = 1 + intListLength xs
-
+> -- |In a list of 'Integer's sums two by two the elements of 
+> -- the list from the left. Returns the sums in a list
 > sumEveryTwo :: [Integer] -> [Integer]
 > sumEveryTwo []         = []     -- Do nothing to the empty list
 > sumEveryTwo (x:[])     = [x]    -- Do nothing to lists with a single element
 > sumEveryTwo (x:(y:zs)) = (x + y) : sumEveryTwo zs
 
-> -- The number of hailstone steps needed to reach 1 from a starting
+> -- |Computes the /hailstone number/ 
+> hailstone :: Integer -> Integer
+> hailstone n
+>   | n `mod` 2 == 0 = n `div` 2
+>   | otherwise      = 3*n + 1
+
+> -- |Compute the length of a list of Integers.
+> intListLength :: [Integer] -> Integer
+> intListLength []     = 0
+> intListLength (_:xs) = 1 + intListLength xs
+
+> -- |Generate the sequence of hailstone iterations from a starting number.
+> hailstoneSeq :: Integer -> [Integer]
+> hailstoneSeq 1 = [1]
+> hailstoneSeq n = n : hailstoneSeq (hailstone n)
+
+> -- |The number of hailstone steps needed to reach 1 from a starting
 > -- number.
 > hailstoneLen :: Integer -> Integer
 > hailstoneLen n = intListLength (hailstoneSeq n) - 1
