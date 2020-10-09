@@ -20,12 +20,30 @@ This functions are copied from `doc/01-intro.lhs` and packed as a module.
 
 > module Intro where
 
+
+> -- $setup
+> -- import Prelude
+
 > -- |Compute the sum of the integers from 1 to n.
+> --
+> -- >>> sumtorial 1000
+> -- 500500
+> --
+> -- -- doesn't work prop> (read . show) x == (x :: Int) 
 > sumtorial :: Integer -> Integer
 > sumtorial 0 = 0
 > sumtorial n = n + sumtorial (n-1)
 
 > -- |Example of /pattern matching/ with /guards/
+> -- 
+> -- >>> foo (-3)
+> -- 0
+> -- >>> foo 0
+> -- 16
+> -- >>> foo 36
+> -- -43
+> -- >>> foo 38
+> -- 41 
 > foo :: Integer -> Integer
 > foo 0 = 16
 > foo 1 
@@ -57,6 +75,9 @@ This *works*, but it is much too complicated.  Can you see why?
 
 > -- |In a list of 'Integer's sums two by two the elements of 
 > -- the list from the left. Returns the sums in a list
+> --
+> -- >>>sumEveryTwo [1,2,3,4,5]
+> -- [3,7,5]
 > sumEveryTwo :: [Integer] -> [Integer]
 > sumEveryTwo []         = []     -- Do nothing to the empty list
 > sumEveryTwo (x:[])     = [x]    -- Do nothing to lists with a single element

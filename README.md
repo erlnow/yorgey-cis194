@@ -19,3 +19,8 @@ In this [repository][repo], I will try follow this course and the proposed exerc
 [yorgey]: https://byorgey.wordpress.com/
 [cis194]: http://www.seas.upenn.edu/~cis194/spring13/
 [repo]: https://github.com/erlnow/yorgey-cis194
+
+## Test
+
+TODO: write about testing with Hspec, QuickCheck and doctest and
+the error about ">prop" with doctest and how to solve it, if finally i can

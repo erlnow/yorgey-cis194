@@ -36,33 +36,25 @@ executables:
     main: Main.hs
     dependencies:
       - yorgey-cis194
-    ghc-options:
-      -threaded
-      -rtsopts
-      -with-rtsopts=-N
 
 tests:
   cabal-sample-test:
     main: MyLibTest.hs
     source-dirs: test
-    ghc-options:
-      -threaded
-      -rtsopts
-      -with-rtsopts=-N
     dependencies:
       - yorgey-cis194
-        #      - QuickCheck
-        #build-tools: hspec-discover
   cis194-test:
     source-dirs: test/cis194
     main: Spec.hs
-    ghc-options:
-      -threaded
-      -rtsopts
-      -with-rtsopts=-N
     dependencies:
       - yorgey-cis194
       - hspec == 2.*
-      #      - QuickCheck
+      - QuickCheck
     build-tools: hspec-discover
-    
+  doctest:
+    main: Main.hs
+    source-dirs: test/doctest
+    dependencies:
+      - yorgey-cis194
+      - doctest >= 0.8
+      - QuickCheck

@@ -26,13 +26,13 @@ module IntroSpec (spec) where
 
 import Intro
 import Test.Hspec
+import Test.QuickCheck
 
 spec :: Spec
 spec = do
   describe "Intro" $ do
-    -- TODO: QuickSpec Better
     it "sumtorial 1000" $ do
       sumtorial 1000 `shouldBe` 1000 * (1000 + 1) `div` 2
-
-
-
+    it "sumtorial n" $ property $
+      \x -> (read . show) x == (x :: Int) 
+     
