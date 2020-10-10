@@ -20,16 +20,11 @@ This functions are copied from `doc/01-intro.lhs` and packed as a module.
 
 > module Intro where
 
-
-> -- $setup
-> -- import Prelude
-
 > -- |Compute the sum of the integers from 1 to n.
 > --
 > -- >>> sumtorial 1000
 > -- 500500
 > --
-> -- -- doesn't work prop> (read . show) x == (x :: Int) 
 > sumtorial :: Integer -> Integer
 > sumtorial 0 = 0
 > sumtorial n = n + sumtorial (n-1)

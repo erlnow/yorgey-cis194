@@ -1,4 +1,5 @@
 # Yorgey CIS 194
+u
 
 Chris Allen (a.k.a. [bytemyapp][b]), one of the authors of [Haskell
 Book][hbook], wrote an [article][htlh] about his recommended path to _learn
@@ -24,3 +25,21 @@ In this [repository][repo], I will try follow this course and the proposed exerc
 
 TODO: write about testing with Hspec, QuickCheck and doctest and
 the error about ">prop" with doctest and how to solve it, if finally i can
+
+~~~~
+> --
+> -- $
+> -- prop> sumtorial n == n + sumtorial (n-1)
+> -- Two errors
+> -- * if n < 0 sumtorial doesn't stop (Hspec + QuickCheck)
+> -- * Exection 
+> --
+> --     @
+> --       Variable not in scope:
+> --         wkName
+> --           :: [Char]
+> --              -> template-haskell-2.11.1.0:Language.Haskell.TH.Syntax.Name
+> --     @
+> -- To solve: read https://github.com/phadej/cabal-doctest
+~~~~
+
