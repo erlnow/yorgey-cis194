@@ -121,7 +121,7 @@ doubleEveryOther xs = (reverse . doubleEveryOther' . reverse) xs
 --
 -- >>> sumDigits [16,7,12,5] == 1 + 6 + 7 + 1 + 2 + 5
 
--- |Calculates the sum of all digits of a list of 'Integers'.
+-- |Calculates the sum of all digits of a list of Integers.
 --
 -- Note: The list has numbers with one digit and two digits.
 -- Numbers with two-digits are the doubles of one digit number

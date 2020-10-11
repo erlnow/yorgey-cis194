@@ -64,7 +64,7 @@ This *works*, but it is much too complicated.  Can you see why?
 > sumPair :: (Int,Int) -> Int
 > sumPair (x,y) = x + y
 
-> -- |Sum of three 'Int''s
+> -- |Sum of three Int's
 > f :: Int -> Int -> Int -> Int
 > f x y z = x + y + z
 
