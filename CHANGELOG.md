@@ -1,6 +1,6 @@
 # Revision history for yorgey-cis194
 
-## 0.1.0.1 -- 2020-10-07 01-Intro
+## 0.1.0.1 -- 2020-10-11 01-Intro
 
 ### Added
 * doc/style.pdf
@@ -13,6 +13,9 @@
 * src/Intro.lhs
 * test/cis194/Spec.hs
 * test/cis194/IntroSpec.hs
+* src/Cards.hs
+* test/cis194/CardsSpec.hs
+* app/cccn.hs
 
 ### Changed
 * package.yaml
