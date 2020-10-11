@@ -1,10 +1,10 @@
-cabal-version: 1.12
+cabal-version: 1.18
 
 -- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8ce8bc135034bca8ee3695ab27dcb25e9adf248b7f2441596eed45ec105ff25a
+-- hash: 43be3faedecdfe4de01374fc497530c79af766802e28e9894c1eea0c54727d91
 
 name:           yorgey-cis194
 version:        0.1.0.1
@@ -22,9 +22,25 @@ build-type:     Simple
 extra-source-files:
     CHANGELOG.md
     README.md
+    TODO
     doc/01-intro.lhs
     doc/01-intro.pdf
     doc/style.pdf
+    doc/images/ccn.png
+    doc/images/function-machine.png
+    doc/images/hanoi.jpg
+    doc/images/haskell-logo-small.png
+    doc/images/pure.jpg
+    doc/images/relax.jpg
+    doc/images/static.jpg
+extra-doc-files:
+    doc/images/ccn.png
+    doc/images/function-machine.png
+    doc/images/hanoi.jpg
+    doc/images/haskell-logo-small.png
+    doc/images/pure.jpg
+    doc/images/relax.jpg
+    doc/images/static.jpg
 
 source-repository head
   type: git
@@ -33,6 +49,7 @@ source-repository head
 library
   exposed-modules:
       Cards
+      Hanoi
       Intro
       MyLib
   other-modules:
@@ -87,6 +104,7 @@ test-suite cis194-test
   main-is: Spec.hs
   other-modules:
       CardsSpec
+      HanoiSpec
       IntroSpec
       Paths_yorgey_cis194
   hs-source-dirs:

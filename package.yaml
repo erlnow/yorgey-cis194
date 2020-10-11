@@ -19,7 +19,12 @@ build-type:          Simple
 extra-source-files:  
   - CHANGELOG.md
   - README.md
+  - TODO
   - doc/*
+  - doc/images/*
+
+extra-doc-files:
+  - doc/images/*
 
 dependencies:
   - base >= 4.7 && < 5
