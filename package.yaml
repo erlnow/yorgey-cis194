@@ -36,6 +36,11 @@ executables:
     main: Main.hs
     dependencies:
       - yorgey-cis194
+  cccn:
+    source-dirs: app
+    main: cccn.hs
+    dependencies:
+      - yorgey-cis194
 
 tests:
   cabal-sample-test:

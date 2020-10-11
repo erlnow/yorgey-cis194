@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 496652c5e30f59bd6089b4ab2d148cc3d8918a77646c877312ca3159c38dc899
+-- hash: 8ce8bc135034bca8ee3695ab27dcb25e9adf248b7f2441596eed45ec105ff25a
 
 name:           yorgey-cis194
 version:        0.1.0.1
@@ -32,6 +32,7 @@ source-repository head
 
 library
   exposed-modules:
+      Cards
       Intro
       MyLib
   other-modules:
@@ -46,6 +47,19 @@ library
 executable cabal-sample
   main-is: Main.hs
   other-modules:
+      Paths_yorgey_cis194
+  hs-source-dirs:
+      app
+  ghc-options: -Wall
+  build-depends:
+      base >=4.7 && <5
+    , yorgey-cis194
+  default-language: Haskell2010
+
+executable cccn
+  main-is: cccn.hs
+  other-modules:
+      Main
       Paths_yorgey_cis194
   hs-source-dirs:
       app
@@ -72,6 +86,7 @@ test-suite cis194-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      CardsSpec
       IntroSpec
       Paths_yorgey_cis194
   hs-source-dirs:
@@ -97,8 +112,6 @@ test-suite doctest
   build-depends:
       QuickCheck
     , base >=4.7 && <5
-    , base-compat
     , doctest >=0.8
-    , template-haskell
     , yorgey-cis194
   default-language: Haskell2010
