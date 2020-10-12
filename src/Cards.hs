@@ -1,5 +1,6 @@
 -- |
 -- Module      :  Cards
+-- Description :  Home work assigment for Week 1: check credit card numbers
 -- Copyright   :  erlnow 2020 - 2030
 -- License     :  BSD3
 --
@@ -82,6 +83,7 @@ module Cards (
 toDigits :: Integer -> [Integer]
 toDigits  = reverse . toDigitsRev
 
+-- |Converts a reversed positive Integer to digits
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev n | n <= 0 = []
               | otherwise = n `mod` 10 : toDigitsRev (n `div` 10)
