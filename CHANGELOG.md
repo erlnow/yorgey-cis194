@@ -1,6 +1,19 @@
 # Revision history for yorgey-cis194
 
-## 0.1.0.1 -- 2020-10-11 01-Intro
+## 0.2.0.0 -- 2020-10-26 02-ADTs
+
+### Changed
+
+
+## 0.1.0.1 -- 2020-10-26 01-Intro
+
+### Changed 
+
+New version 
+
+* CHANGELOG.md
+* package.yaml
+* yorgey-cis194.cabal
 
 ### Added
 * doc/style.pdf
