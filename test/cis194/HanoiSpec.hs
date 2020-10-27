@@ -42,7 +42,8 @@ spec = do
           n = 15
        in length (Hanoi.hanoi (fromIntegral n) "a" "b" "c") `shouldBe` (2^n) - 1
     it "reve 15" $ do
-      let n :: Int
-          n = 15
-          result = length (Hanoi.reeve (fromIntegral n) "a" "b" "c" "d")
-       in result >= 120 && result <= (2^n)-1 `shouldBe` True 
+      -- let n :: Int
+      --     n = 15
+      --     result = length (Hanoi.reeve (fromIntegral n) "a" "b" "c" "d")
+      --  in result >= 120 && result <= (2^n)-1 `shouldBe` True 
+      pendingWith "Implement"

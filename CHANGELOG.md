@@ -10,8 +10,13 @@
 ### Changed 
 
 Fix doctest
-* src/Hanoi.hs          -- Fix doctest and comment about pending implement `reeve`
-* src/Cards.hs          -- Fix doctest
+
+* src/Hanoi.hs                  -- Fix doctest and comment about pending implement `reeve`
+* src/Cards.hs                  -- Fix doctest
+
+Fix Hspec test
+
+* test/cis194/HanoiSpec.hs      -- comment `reeve` test and use pendingWith instead
 
 New version 
 
