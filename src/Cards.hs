@@ -79,7 +79,7 @@ module Cards (
 -- >>> toDigits 0 == []
 -- True
 -- >>> toDigits (-17) == []
--- Tue
+-- True
 toDigits :: Integer -> [Integer]
 toDigits  = reverse . toDigitsRev
 
@@ -122,6 +122,7 @@ doubleEveryOther xs = (reverse . doubleEveryOther' . reverse) xs
 -- Example:
 --
 -- >>> sumDigits [16,7,12,5] == 1 + 6 + 7 + 1 + 2 + 5
+-- True
 
 -- |Calculates the sum of all digits of a list of Integers.
 --
@@ -151,8 +152,11 @@ sumDigits ns = sum [if x > 9 then sum2dig x else x | x <- ns]
 -- exercises.
 -- Examples
 --
--- >>> validate 4012888888881881 == True
--- >>> validate 4012888888881882 == False
+-- >>> validate 4012888888881881
+-- True
+--
+-- >>> validate 4012888888881882
+-- False
 
 -- |Indicates whether an 'Integer' could be a valid credit
 -- card number.

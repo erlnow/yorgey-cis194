@@ -11,6 +11,7 @@
 
 Fix doctest
 * src/Hanoi.hs          -- Fix doctest and comment about pending implement `reeve`
+* src/Cards.hs          -- Fix doctest
 
 New version 
 
