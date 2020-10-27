@@ -2,10 +2,9 @@
 
 ## 0.2.0.0 -- 2020-10-26 02-ADTs
 
-### Changed
+### Added
 
-
-## 0.1.0.1 -- 2020-10-26 01-Intro
+* doc/02-ADTs.lhs       -- Week 2: Algebraic Data Types lecture 
 
 ### Changed 
 
@@ -14,6 +13,8 @@ New version
 * CHANGELOG.md
 * package.yaml
 * yorgey-cis194.cabal
+
+## 0.1.0.1 -- 2020-10-26 01-Intro
 
 ### Added
 * doc/style.pdf
