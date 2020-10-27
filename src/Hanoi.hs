@@ -81,6 +81,7 @@ module Hanoi (
 -- Example:
 --
 -- >>> hanoi 2 "a" "b" "c" == [("a","c"),("a","b"),("c","b)]
+-- True
 
 -- |Name of peg
 type Peg = String
@@ -107,5 +108,7 @@ hanoi n a b c
 -- second ed., Addison-Wesley, 1994)
 
 -- |reeve's puzzle, like hanoi but with four pegs.
+--
+-- __TODO__: __undefined__. Pending implement.
 reeve :: Integer -> Peg -> Peg -> Peg -> Peg -> [Move]
 reeve = undefined
