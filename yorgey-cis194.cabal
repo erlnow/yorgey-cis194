@@ -4,7 +4,7 @@ cabal-version: 1.18
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7a8d536619441989b4889515932c2a64bdb8341154dd31e7d2de8f3568369772
+-- hash: e371d38b7c2c7b7cfde99bfb91c1fd07853433d83506c7cbac450a25fc489374
 
 name:           yorgey-cis194
 version:        0.2.0.1
@@ -53,6 +53,7 @@ source-repository head
 
 library
   exposed-modules:
+      ADTs
       Cards
       Hanoi
       Intro

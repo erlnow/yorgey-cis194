@@ -5,6 +5,7 @@
 ### Added
 
 * doc/02-ADTs.lhs       -- Week 2: Algebraic Data Types lecture 
+* src/ADTs.lhs          -- same as above as a module
 
 ### Changed 
 
