@@ -9,6 +9,9 @@
 
 ### Changed 
 
+Fix doctest
+* src/Hanoi.hs          -- Fix doctest and comment about pending implement `reeve`
+
 New version 
 
 * CHANGELOG.md

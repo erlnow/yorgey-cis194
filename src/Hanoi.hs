@@ -80,7 +80,7 @@ module Hanoi (
 --
 -- Example:
 --
--- >>> hanoi 2 "a" "b" "c" == [("a","c"),("a","b"),("c","b)]
+-- >>> hanoi 2 "a" "b" "c" == [("a","c"),("a","b"),("c","b")]
 -- True
 
 -- |Name of peg
