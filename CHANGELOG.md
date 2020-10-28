@@ -1,6 +1,6 @@
 # Revision history for yorgey-cis194
 
-## 0.2.0.0 -- 2020-10-26 02-ADTs
+## 0.2.0.0 -- 2020-10-28 02-ADTs
 
 ### Added
 
