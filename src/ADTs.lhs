@@ -180,15 +180,20 @@ In fact, we have already seen a recursive type---the type of lists.
 A list is either empty, or a single element followed by a remaning list.
 We could define our own list type like so:
 
+> -- | A list of 'Int' as recursive algrebraic data type
 > data IntList = Empty | Cons Int IntList
 >
+> -- | Product of all elements in a 'IntList'
 > intListProd :: IntList -> Int
 > intListProd Empty      = 1
 > intListProd (Cons x l) = x * intListProd l
 
+> -- | A example of recursive algebaric data type. A binary tree holding
+> -- an 'Int' in its nodes and a 'Char' in its leaves.
 > data Tree = Leaf Char
 >           | Node Tree Int Tree
 >      deriving Show
 
+> -- | A tree
 > tree :: Tree
 > tree = Node (Leaf 'x') 1 (Node (Leaf 'y') 2 (Leaf 'z'))
