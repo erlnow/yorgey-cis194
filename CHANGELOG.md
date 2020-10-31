@@ -1,5 +1,28 @@
 # Revision history for yorgey-cis194
 
+## 0.2.0.0 -- 2020-10-31 02-ADTs
+
+### Added
+
+Downloaded files from assignment
+
+* data/error.log
+* data/sample.log
+* doc/02-ADTs.pdf
+* src/Logs.hs
+
+Assignment
+
+* src/LogAnalysis.hs    -- Assignment file
+
+### Changed
+
+New version
+
+* CHANGELOG.md 
+* package.yaml          -- new version, added 'data-files'
+* yorgey-cis194.cabal
+
 ## 0.2.0.0 -- 2020-10-28 02-ADTs
 
 ### Added
