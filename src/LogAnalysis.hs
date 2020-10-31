@@ -88,4 +88,5 @@ parseMessage xs = case hl of
 
 -- |parse a full log file and returns its contents as a list of 'LogMessage's.
 parse :: String -> [LogMessage]
-parse = undefined
+parse [] = []
+parse xs = map parseMessage (lines xs)
