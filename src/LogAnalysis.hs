@@ -68,23 +68,33 @@ import Log
 parseMessage :: String -> LogMessage
 parseMessage [] = Unknown ""
 parseMessage xs = case hl of
-                    "I" -> LogMessage Info getTime getMsg 
-                    "W" -> LogMessage Warning getTime getMsg
-                    "E" -> LogMessage (Error getError) getTime getMsg
+                    "I" -> if getTime == Nothing
+                              then Unknown xs
+                              else LogMessage Info (j getTime) getMsg 
+                    "W" -> if getTime == Nothing
+                              then Unknown xs
+                              else LogMessage Warning (j getTime) getMsg
+                    "E" -> if getError == Nothing || getTime == Nothing
+                              then Unknown xs
+                              else LogMessage (Error (j getError)) (j getTime) getMsg
                     _   -> Unknown (xs)
                 where
+                  j (Just a) = a
                   line = words xs       -- has at last one word
                   hl = head line
                   msgError = head. tail $ line
                   msgTime  = if hl == "E"
                                 then head . tail . tail $ line
                                 else head . tail $ line 
-                  getError = read msgError :: Int
-                  getTime  = read msgTime :: Int
-                  getMsg   = if hl == "E"
+                  getError = if null msgError
+                                then Nothing
+                                else Just (read msgError :: Int)
+                  getTime  = if null msgTime
+                                then Nothing
+                                else Just (read msgTime :: Int)
+                  getMsg   = if hl == "E"       -- can be "" 
                                 then unwords . tail . tail . tail $ line
                                 else unwords . tail . tail $ line 
-
 
 -- |parse a full log file and returns its contents as a list of 'LogMessage's.
 parse :: String -> [LogMessage]
