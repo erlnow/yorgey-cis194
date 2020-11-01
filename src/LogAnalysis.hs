@@ -101,7 +101,9 @@ parse :: String -> [LogMessage]
 parse [] = []
 parse xs = map parseMessage (lines xs)
 
--- * Exercise 2
+-- *Putting the logs in order
+--
+-- **Exercise 2
 --
 -- $ex2
 --
@@ -125,6 +127,26 @@ parse xs = map parseMessage (lines xs)
 insert :: LogMessage -> MessageTree -> MessageTree
 insert (Unknown _) mt = mt
 insert lm (Leaf)   = Node Leaf lm Leaf
-insert l@(LogMessage _ t _) (Node i (LogMessage _ t' _) d)
-  = if t < t' then insert l i
-              else insert l d 
+insert l@(LogMessage _ t _) (Node i l'@(LogMessage _ t' _) d)
+  = if t < t' then Node (insert l i) l' d
+              else Node i l' (insert l d)
+
+-- **Exercise 3
+--
+-- $ex3
+--
+-- Once we can insert a single 'LogMessage' into a 'MessageTree', we can build
+-- a complete 'MessageTree' from a list of messages. Specifically, define a
+-- function
+--
+-- @
+--   build :: [LogMessages] -> MessageTree
+-- @
+--
+-- which builds up a MessageTree containing the messages in the list, be
+-- successively inserting the messages into a 'MessageTree' (beginning with a
+-- 'Leaf')
+
+-- |from a given list of 'LogMessage's builds up a sorted tree of 'LogMessages'
+build :: [LogMessage] -> MessageTree
+build = foldr insert Leaf 
