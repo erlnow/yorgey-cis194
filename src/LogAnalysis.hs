@@ -100,3 +100,31 @@ parseMessage xs = case hl of
 parse :: String -> [LogMessage]
 parse [] = []
 parse xs = map parseMessage (lines xs)
+
+-- * Exercise 2
+--
+-- $ex2
+--
+-- Define a function
+--
+-- @
+--   insert :: LogMessage -> MessageTree -> MessageTree
+-- @
+--
+-- which insert a new 'LogMessage' into an existing 'MessageTree', producing a
+-- new 'MessageTree'. 'insert' may assume that it is given a sorted
+-- 'MessageTree', and must produce a new sorted 'MessageTree' containing the
+-- new 'LogMessage' in addition to the contents of the original 'MessageTree'.
+--
+-- However, note that if 'insert' is given a 'LogMessage' which is 'Unknown',
+-- it should return the 'MessageTree' unchanged.
+
+-- |insert a 'LogMessage' in a sorted 'MessageTree' and return a new sorted
+-- 'MessageTree'. If 'LogMessage' is 'Unknown' return the 'MessageTree'
+-- unchanged.
+insert :: LogMessage -> MessageTree -> MessageTree
+insert (Unknown _) mt = mt
+insert lm (Leaf)   = Node Leaf lm Leaf
+insert l@(LogMessage _ t _) (Node i (LogMessage _ t' _) d)
+  = if t < t' then insert l i
+              else insert l d 
