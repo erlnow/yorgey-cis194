@@ -150,3 +150,31 @@ insert l@(LogMessage _ t _) (Node i l'@(LogMessage _ t' _) d)
 -- |from a given list of 'LogMessage's builds up a sorted tree of 'LogMessages'
 build :: [LogMessage] -> MessageTree
 build = foldr insert Leaf 
+
+-- **Exercise 4
+--
+-- $ex4
+--
+-- Finally, define the function
+--
+-- @
+--   inOrder :: MessageTree -> [LogMessage]
+-- @
+--
+-- which takes a sorted 'MessageTree' and produces a list of all the
+-- 'LogMessages' it contains, sorted by timestamp from smallest to biggest.
+-- (This is known as /in-order traversal/ of the MessageTree.)
+--
+-- With these functions, we can now remove 'Unknown' messages and
+-- sort the well-formed messages using an expression such as:
+--
+-- @
+--   inOrder (build tree)
+-- @
+--
+-- [Note: there are much better ways to sort a list; this is just an exercise
+-- to get you working with recursive data structures!]
+
+inOrder :: MessageTree -> [LogMessage]
+inOrder Leaf = []
+inOrder (Node i l d) = inOrder i ++ [l] ++ inOrder d
