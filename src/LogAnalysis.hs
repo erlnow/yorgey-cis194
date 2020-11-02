@@ -44,9 +44,9 @@ import Log
 -- @
 --
 -- which parse an entire log file at once and returns its contents as a list of
--- 'LogMessages'.
+-- 'LogMessage's.
 --
--- To test your function, use the 'testParse' function provided in the 'Log'
+-- To test your function, use the 'testParse' function provided in the "Log"
 -- module, giving it as arguments your 'parse' function, the number of lines to
 -- parse, and the log file to parse from (which should also be in the same
 -- folder as your assignment). For example, after loading your assignment
@@ -56,7 +56,7 @@ import Log
 --   testParse parse 10 "error.log"
 -- @
 --
--- Don't reinvent the wheel! (That's so /last/ week.) Use 'Prelude' functions
+-- Don't reinvent the wheel! (That's so /last/ week.) Use "Prelude" functions
 -- to make your solution as concise, high-level, and functional as possible.
 -- For example, to convert a 'String' like @"562"@ into an 'Int', you can 
 -- use the 'read' function. Other functions which may (or may not) be useful
@@ -162,7 +162,7 @@ build = foldr insert Leaf
 -- @
 --
 -- which takes a sorted 'MessageTree' and produces a list of all the
--- 'LogMessages' it contains, sorted by timestamp from smallest to biggest.
+-- 'LogMessages' it contains, sorted by time stamp from smallest to biggest.
 -- (This is known as /in-order traversal/ of the MessageTree.)
 --
 -- With these functions, we can now remove 'Unknown' messages and
@@ -178,3 +178,80 @@ build = foldr insert Leaf
 inOrder :: MessageTree -> [LogMessage]
 inOrder Leaf = []
 inOrder (Node i l d) = inOrder i ++ [l] ++ inOrder d
+
+-- *Log file postmortem
+--
+-- ** Exercise 5
+--
+-- $ex5
+--
+-- Now that we can sort the log messages, the only thing left to do is extract
+-- the relevant information. We have decided that \"relevant\" means \"errors
+-- with a severity of at least 50\".
+--
+-- Write a function
+--
+-- @
+--   whatWentWrong :: [LogMessage] -> [String]
+-- @
+--
+-- which take an /unsorted/ list of LogMessages, and return a list of 
+-- the messages corresponding to any errors with a severity of 50 or
+-- greater, sorted by timestamp. (Of course, you can use your functions
+-- from the previous exercises to do the sorting.)
+--
+-- For example, suppose our log file looked like this:
+--
+-- @
+--   I 6 Completed armadillo processing
+--   I 1 Nothing to report
+--   E 99 10 Flange failed!
+--   I 4 Everything normal
+--   I 11 Initiating self-destruct sequence
+--   E 70 3 Way too many pickles
+--   E 65 8 Bad pickle-flange interaction detected
+--   W 5 Flange is due for a check-up
+--   I 7 Out for lunch, back in two time steps
+--   E 20 2 Too many pickles
+--   I 9 Back from lunch
+-- @
+--
+-- This file is provided as @sample.log@. There are four errors, three of
+-- which have a severity of greater than 50. The output of 'whatWentWrong'
+-- on @sample.log@ ought to be
+--
+-- @
+--   [ "Way too many pickles"
+--   , "Bad pickle-flange interaction detected"
+--   , "Flange failed!"
+--   ]
+-- @
+--
+-- You can test your 'whatWentWrong' function with 'testWhatWentWrong',
+-- which is also provided by the "Log" module. You should provide
+-- 'testWhatWentWrong' with your parse function, your 'whatWentWrong' 
+-- function, and the name of the log file to parse.
+
+-- |a function that takes an unsorted list of LogMessage items and 
+-- return a list of string from the LogMessages sorted by timestamp
+-- that are Errors with a severity greater than 50.
+whatWentWrong :: [LogMessage] -> [String]
+whatWentWrong = map getMsg . filter meaningLog . inOrder . build
+
+meaningLog :: LogMessage -> Bool 
+meaningLog (LogMessage (Error s) _ _) = s > 50 
+meaningLog _ = False
+
+getMsg :: LogMessage -> String
+getMsg (Unknown s)        = s
+getMsg (LogMessage _ _ s) = s
+
+-- *Miscellaneous
+--
+-- $misc
+--
+-- * We will test your solution on log files other than the ones we have
+-- given you, so no hardcoding!
+--
+-- * You are free (in fact, encouraged) to discuss the assignment with
+-- any of your classmates as long as you type up your own solution.
