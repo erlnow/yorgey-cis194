@@ -165,8 +165,8 @@ build = foldr insert Leaf
 -- 'LogMessages' it contains, sorted by time stamp from smallest to biggest.
 -- (This is known as /in-order traversal/ of the MessageTree.)
 --
--- With these functions, we can now remove 'Unknown' messages and
--- sort the well-formed messages using an expression such as:
+-- With these functions, we can now remove 'Unknown' messages and sort the
+-- well-formed messages using an expression such as:
 --
 -- @
 --   inOrder (build tree)
@@ -195,10 +195,10 @@ inOrder (Node i l d) = inOrder i ++ [l] ++ inOrder d
 --   whatWentWrong :: [LogMessage] -> [String]
 -- @
 --
--- which take an /unsorted/ list of LogMessages, and return a list of 
--- the messages corresponding to any errors with a severity of 50 or
--- greater, sorted by timestamp. (Of course, you can use your functions
--- from the previous exercises to do the sorting.)
+-- which take an /unsorted/ list of LogMessages, and return a list of the
+-- messages corresponding to any errors with a severity of 50 or greater,
+-- sorted by timestamp. (Of course, you can use your functions from the
+-- previous exercises to do the sorting.)
 --
 -- For example, suppose our log file looked like this:
 --
@@ -216,9 +216,9 @@ inOrder (Node i l d) = inOrder i ++ [l] ++ inOrder d
 --   I 9 Back from lunch
 -- @
 --
--- This file is provided as @sample.log@. There are four errors, three of
--- which have a severity of greater than 50. The output of 'whatWentWrong'
--- on @sample.log@ ought to be
+-- This file is provided as @sample.log@. There are four errors, three of which
+-- have a severity of greater than 50. The output of 'whatWentWrong' on
+-- @sample.log@ ought to be
 --
 -- @
 --   [ "Way too many pickles"
@@ -227,14 +227,14 @@ inOrder (Node i l d) = inOrder i ++ [l] ++ inOrder d
 --   ]
 -- @
 --
--- You can test your 'whatWentWrong' function with 'testWhatWentWrong',
--- which is also provided by the "Log" module. You should provide
--- 'testWhatWentWrong' with your parse function, your 'whatWentWrong' 
--- function, and the name of the log file to parse.
+-- You can test your 'whatWentWrong' function with 'testWhatWentWrong', which
+-- is also provided by the "Log" module. You should provide 'testWhatWentWrong'
+-- with your parse function, your 'whatWentWrong' function, and the name of the
+-- log file to parse.
 
--- |a function that takes an unsorted list of LogMessage items and 
--- return a list of string from the LogMessages sorted by timestamp
--- that are Errors with a severity greater than 50.
+-- |a function that takes an unsorted list of LogMessage items and return a
+-- list of string from the LogMessages sorted by timestamp that are Errors with
+-- a severity greater than 50.
 whatWentWrong :: [LogMessage] -> [String]
 whatWentWrong = map getMsg . filter meaningLog . inOrder . build
 
@@ -250,8 +250,26 @@ getMsg (LogMessage _ _ s) = s
 --
 -- $misc
 --
--- * We will test your solution on log files other than the ones we have
--- given you, so no hardcoding!
+-- * We will test your solution on log files other than the ones we have given
+-- you, so no hardcoding!
 --
--- * You are free (in fact, encouraged) to discuss the assignment with
--- any of your classmates as long as you type up your own solution.
+-- * You are free (in fact, encouraged) to discuss the assignment with any of
+-- your classmates as long as you type up your own solution.
+
+-- *Epilogue
+--
+-- **Exercise 6
+--
+-- $ex6
+--
+-- For various reasons we are beginning to suspect that the recent mess was
+-- caused by a single, egoistical hacker. Can you figure out who did it?)
+-- 
+whatWentWrong' :: [LogMessage] -> [(TimeStamp,String)]
+whatWentWrong' = map getMsg' . filter meaningLog . inOrder . build
+  where getMsg' (LogMessage _ t s) = (t,s)
+
+huntHacker :: [LogMessage] -> [String]
+huntHacker = map getMsg . filter errors . inOrder . build
+  where errors (LogMessage (Error _) t _) = t < 131 
+        errors _ = False
