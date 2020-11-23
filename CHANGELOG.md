@@ -1,6 +1,23 @@
 # Revision history for yorgey-cis194
 
-## 0.3.0.1 -- 2020-11-02 03-rec-poly
+## 0.3.0.2 -- 2020-11-23 RecPoly module
+
+### Added
+
+* src/RecPoly.lhs       -- module from lesson
+
+### Changed
+
+* CHANGELOG.md          -- fix last records
+* package.yaml          -- new version
+* yorgey-cis194.cabal
+* doc/03-rec-poly.lhs   -- ?
+
+## 0.3.0.1 -- 2020-11-03 03-rec-poly
+
+### Added
+
+* doc/03-rec-poly.lhs   -- downloaded lesson lhs
 
 ### Changed
 
@@ -10,7 +27,8 @@ New version
 * package.yaml
 * yorgey-cis194.cabal
 
-## 0.2
+## 0.2.0.2 -- 2020-11-02 02-ADTs
+
 ### Added
 
 Downloaded files from assignment
@@ -18,32 +36,28 @@ Downloaded files from assignment
 * data/error.log
 * data/sample.log
 * doc/02-ADTs.pdf
-* src/Logs.hs
+* src/Logs.hs           -- module downloaded for assignment
+* src/ADTs.lhs    
 
 Assignment
 
 * src/LogAnalysis.hs    -- Assignment file
 
-## 0.2.0.1 -- 2020-10-27 02-ADTs
-
-
-### Added
-
-* src/ADTs.lhs    
-
 ### Changed
 
 New version
 
-* CHANGELOG.md 
-* package.yaml          -- new version, added 'data-files'
+* CHANGELOG.m           -- new version
+* package.yaml          -- added 'data-files'd
 * yorgey-cis194.cabal
+* TODO                  -- format of checklist
 
 ## 0.2.0.1 -- 2020-10-28 02-ADTs
 
 Week 2: Algebraic Data Types
 
-* doc/02-ADTs.lhs
+* doc/02-ADTs.lhs               -- downloaded lesson lhs file
+* src/ADTs.lhs                  -- module version
 
 ### Changed 
 
