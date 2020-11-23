@@ -1,5 +1,18 @@
 # Revision history for yorgey-cis194
 
+## 0.3.0.3 -- 2020-11-23 Homework 3
+
+### Added 
+
+* doc/03-rec-poly.pdf   -- assignment
+* src/Golf.hs           -- assignment source
+
+### Changed
+
+* CHANGELOG.md
+* package.yaml          -- new version
+* yorgey-cis194.cabal
+
 ## 0.3.0.2 -- 2020-11-23 RecPoly module
 
 ### Added
