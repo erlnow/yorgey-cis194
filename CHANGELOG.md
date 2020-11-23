@@ -11,7 +11,7 @@
 * CHANGELOG.md          -- fix last records
 * package.yaml          -- new version
 * yorgey-cis194.cabal
-* doc/03-rec-poly.lhs   -- ?
+* doc/03-rec-poly.lhs   -- Changed and then restore from d78bee4 commit
 
 ## 0.3.0.1 -- 2020-11-03 03-rec-poly
 
