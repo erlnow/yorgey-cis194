@@ -1,9 +1,23 @@
-<!--
-{-# OPTIONS_GHC -Wall #-}
--->
+> -- |
+> -- Module      :  RecPoly
+> -- Description :  Yorgey's CIS 194, 03 
+> -- Copyright   :  erlnow 2020 - 2030
+> -- License     :  BSD3
+> --
+> -- Maintainer  :  erlestau@gmail.com
+> -- Stability   :  experimental
+> -- Portability :  unknown
+> --
+> -- Recursion Patterns, polymorphism, and the "Prelude"
+> --
+> -- Downloaded lesson file 'doc/03-rec-poly.lhs' as a module.
+> -- Added comments and, probably test, and signature of functions
+> -- and data definitions.
 
-Recursion patterns, polymorphism, and the Prelude
-=================================================
+> module RecPoly where 
+
+Recursion pattern, polymorphism, and the Prelude
+================================================
 
 CIS 194 Week 3  
 28 January 2013
@@ -27,6 +41,12 @@ Recursion patterns
 
 Recall our simple definition of lists of `Int` values:
 
+> -- *Recursion patterns
+>
+> -- $recPatt
+>
+> -- |IntList, an list of 'Int'. 'IntList' can be 'Empty' or a
+> -- 'Cons' 'Int' and a 'IntList'.
 > data IntList = Empty | Cons Int IntList
 >   deriving Show
 
@@ -57,6 +77,14 @@ in a list:
 
  <!-- HTML
 
+> -- **map
+> --
+> -- $map
+> 
+> -- There is a pattern an all this functions.
+>
+> -- |Given an 'IntList', returns another 'IntList' with all its elements
+> -- incremented by 1
 > addOneToAll :: IntList -> IntList
 > addOneToAll Empty       = Empty
 > addOneToAll (Cons x xs) = Cons (x+1) (addOneToAll xs)
@@ -66,12 +94,16 @@ in a list:
 Or we could ensure that every element in a list is nonnegative by
 taking the absolute value:
 
+> -- |Given an 'IntList', returns another 'IntList' with the absolute
+> -- value of all its elements ('abs')
 > absAll :: IntList -> IntList
 > absAll Empty       = Empty
 > absAll (Cons x xs) = Cons (abs x) (absAll xs)
 
 Or we could square every element:
 
+> -- |Given an 'IntList', returns another 'IntList' with all its values
+> -- squared
 > squareAll :: IntList -> IntList
 > squareAll Empty       = Empty
 > squareAll (Cons x xs) = Cons (x*x) (squareAll xs)
@@ -98,6 +130,8 @@ other functions!
 
  <!-- HTML
 
+> -- |This function generalizes when we need to apply a function in
+> -- all elements in a 'IntList'.
 > mapIntList :: (Int -> Int) -> IntList -> IntList
 > mapIntList _ Empty       = Empty
 > mapIntList f (Cons x xs) = Cons (f x) (mapIntList f xs)
@@ -107,9 +141,15 @@ other functions!
 We can now use `mapIntList` to implement `addOneToAll`, `absAll`, and
 `squareAll`:
 
+> -- |An example of a 'IntList'
+> exampleList :: IntList
 > exampleList = Cons (-1) (Cons 2 (Cons (-6) Empty))
 >
+> -- |Helper function: add one to its argument
+> addOne :: Int -> Int
 > addOne x = x + 1
+> -- |Helper function square its argument
+> square :: Int -> Int
 > square x = x * x
 
     mapIntList addOne exampleList
@@ -130,6 +170,11 @@ want to keep only the positive numbers:
 
  <!-- HTML
 
+> -- **filter
+> --
+> -- $filter
+>
+> -- |return another 'IntList' with only positive values
 > keepOnlyPositive :: IntList -> IntList
 > keepOnlyPositive Empty = Empty
 > keepOnlyPositive (Cons x xs) 
@@ -138,8 +183,7 @@ want to keep only the positive numbers:
 
 -->
 
-Or only the even ones:
-
+> -- |Return another 'IntList' with only even values
 > keepOnlyEven :: IntList -> IntList
 > keepOnlyEven Empty = Empty
 > keepOnlyEven (Cons x xs)
@@ -163,6 +207,8 @@ determine which values to keep.  A predicate is a function of type
 kept, and `False` for those which should be discarded.  So we can
 write `filterIntList` as follows:
 
+> -- |Return another 'IntList' with those values that make 'True' a
+> -- test function.
 > filterIntList :: (Int -> Bool) -> IntList -> IntList
 > filterIntList _ Empty = Empty
 > filterIntList p (Cons x xs)
@@ -177,6 +223,12 @@ The final pattern we mentioned was to "summarize" the elements of the
 list; this is also variously known as a "fold" or "reduce" operation.
 We'll come back to this next week.  In the meantime, you might want to
 think about how to abstract out this pattern!
+
+> -- **fold
+> --
+> -- $fold
+> --
+> -- next week
 
 Polymorphism
 ------------
@@ -198,7 +250,16 @@ for multiple types.
 
 First, let's see how to declare a polymorphic data type.
 
-> data List t = E | C t (List t)
+> -- *Polymorphism
+> --
+> -- **Polymorphic data type
+> --
+> -- $polymorphism
+>
+> -- |A polymorphic 'List'. Has a constructor for an empty list, 'E',
+> -- and constructor for build recursively a list, 'C'. A polymorphic
+> -- type expects one or more types as arguments.
+> data List t = E | C t (List t) deriving Show
 
 (We can't reuse `Empty` and `Cons` since we already used those for the
 constructors of `IntList`, so we'll use `E` and `C` instead.)  Whereas
@@ -213,12 +274,15 @@ Given a type `t`, a `(List t)` consists of either the constructor `E`,
 or the constructor `C` along with a value of type `t` and another
 `(List t)`.  Here are some examples:
 
+> -- |Example a 'List' of 'Int'
 > lst1 :: List Int
 > lst1 = C 3 (C 5 (C 2 E))
 >
+> -- |Example a 'List' of 'Char'
 > lst2 :: List Char
 > lst2 = C 'x' (C 'y' (C 'z' E))
 >
+> -- |Example a 'List' of 'Bool'
 > lst3 :: List Bool
 > lst3 = C True (C False E)
 
@@ -226,8 +290,16 @@ or the constructor `C` along with a value of type `t` and another
 
 Now, let's generalize `filterIntList` to work over our new polymorphic
 `List`s.  We can just take code of `filterIntList` and replace `Empty`
-by `E` and `Cons` by `C`:
+by `E` and `Cons` by `C`
 
+> -- *Polymorphic functions
+> -- 
+> -- $polyfunc
+> --
+>
+> -- |Return a 'List' with elements that make 'True' a
+> -- test
+> filterList :: (t -> Bool) -> List t -> List t
 > filterList _ E = E
 > filterList p (C x xs)
 >   | p x       = C x (filterList p xs)
@@ -260,6 +332,7 @@ show` in order to convert, say, a list of `Int`s into a list of
 `String`s. Here, then, is the most general possible type for
 `mapList`, along with an implementation:
 
+> -- |apply a function to all elements in a 'List'
 > mapList :: (a -> b) -> List a -> List b
 > mapList _ E        = E
 > mapList f (C x xs) = C (f x) (mapList f xs)
@@ -277,16 +350,16 @@ The Prelude
 The `Prelude` is a module with a bunch of standard definitions that
 gets implicitly imported into every Haskell program.  It's worth
 spending some time [skimming through its
-documentation](http://haskell.org/ghc/docs/latest/html/libraries/base/Prelude.html)
+documentation](https://hackage.haskell.org/package/base/docs/Prelude.html)
 to familiarize oneself with the tools that are available.
 
 Of course, polymorphic lists are defined in the `Prelude`, along with
 [many useful polymorphic functions for working with
-them](http://haskell.org/ghc/docs/latest/html/libraries/base/Prelude.html#11).
+them](https://hackage.haskell.org/package/base-4.14.0.0/docs/Prelude.html#g:13).
 For example, `filter` and `map` are the counterparts to our
 `filterList` and `mapList`.  In fact, the [`Data.List` module contains
 many more list functions
-still](http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-List.html).  
+still](https://hackage.haskell.org/package/base/docs/Data-List.html).  
 
 Another useful polymorphic type to know is `Maybe`, defined as
 
@@ -298,7 +371,7 @@ A value of type `Maybe a` either contains a value of type `a` (wrapped
 in the `Just` constructor), or it is `Nothing` (representing some sort
 of failure or error). The [`Data.Maybe` module has functions for
 working with `Maybe`
-values](http://www.haskell.org/ghc/docs/latest/html/libraries/base/Data-Maybe.html).
+values](http://hackage.haskell.org/package/base/docs/Data-Maybe.html).
 
 Total and partial functions
 ---------------------------
@@ -345,11 +418,18 @@ What to do instead?
 Often partial functions like `head`, `tail`, and so on can be replaced
 by pattern-matching.  Consider the following two definitions:
 
+
+> -- | doStuf1: sums the first and second elements of a 'Int' list.
+> -- Return 0 if the list has not at least two elements.
+> -- First version: uses 'head' and 'tail'
 > doStuff1 :: [Int] -> Int
 > doStuff1 []  = 0
 > doStuff1 [_] = 0
 > doStuff1 xs  = head xs + (head (tail xs)) 
 
+> -- | doStuf2: sums the first and second elements of a 'Int' list.
+> -- Return 0 if the list has not at least two elements.
+> -- Second version: uses pattern matching.
 > doStuff2 :: [Int] -> Int
 > doStuff2 []        = 0
 > doStuff2 [_]       = 0
@@ -372,6 +452,7 @@ data Maybe a = Nothing | Just a
 Now, suppose we were writing `head`.  We could rewrite it safely like
 this:
 
+> -- | A safe head version. Return 'Nothing' if the list is empty. 
 > safeHead :: [a] -> Maybe a
 > safeHead []    = Nothing
 > safeHead (x:_) = Just x
@@ -403,18 +484,24 @@ The answer is that if some condition is really *guaranteed*, then the
 types ought to reflect the guarantee!  Then the compiler can enforce
 your guarantees for you.  For example:
 
-> data NonEmptyList a = NEL a [a]
+> -- |A secure version of List, has at last one element.
+> data NonEmptyList a = NEL a [a] deriving Show
 >
+> -- |'NonEmptyList' to List
 > nelToList :: NonEmptyList a -> [a]
 > nelToList (NEL x xs) = x:xs
 >
+> -- |List to 'NonEmptyList'. If List is empty return 'Nothing', in another case
+> -- returns a 'NonEmptyList' wrapped in 'Just'
 > listToNel :: [a] -> Maybe (NonEmptyList a)
 > listToNel []     = Nothing
 > listToNel (x:xs) = Just $ NEL x xs
 >
+> -- |'head' for 'NonEmptyList'.
 > headNEL :: NonEmptyList a -> a
 > headNEL (NEL a _) = a
 >
+> -- |'tail' for 'NonEmptyList'
 > tailNEL :: NonEmptyList a -> [a]
 > tailNEL (NEL _ as) = as
 
