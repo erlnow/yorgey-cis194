@@ -71,3 +71,47 @@ every :: [a] -> Int -> [a]
 every l n = case drop (n-1) l of
                 (y:ys) -> y : every ys n
                 []     -> []
+
+-- ** Exercise 2 Local maxima
+--
+-- $ex2
+--
+-- /local maximum/ of a list is an element of the list which is strictly
+-- greater than both the elements immediately before and after it. For
+-- example, in the list @[2,3,4,1,5]@, the only local maximum is 4, since
+-- it is greater than the elements immediately before and after it (3 and
+-- 1). 5 is not a local maximum since there is no element that comes after
+-- it.
+--
+-- Write a function
+--
+-- @
+-- localMaxima :: [Integer] -> [Integer]
+-- @
+--
+-- which finds all the local maxima in the input list and returns them in order.
+-- For example:
+--
+-- >>> localMaxima [2,9,5,6,1]
+-- [9,6]
+-- >>> localMaxima [2,3,4,1,5]
+-- [4]
+-- >>> localMaxima [1,2,3,4,5]
+-- []
+--
+-- Solution:
+--
+-- This version is a recursive solution. It checks for a local maxima in the
+-- three first elements of @xs@: @x@, @y@ and @z@. If not it continues
+-- searching for a local maxima in the tail of @xs@. If the second is a local
+-- maximum it use cons operator and continues searching for the rest of
+-- elements of xs, z cannot be a local maximum this time. 
+
+-- |Returns a list of local maximum in a given list of 'Integer's.
+localMaxima :: [Integer] -> [Integer]
+localMaxima (x:y:z:xs)
+  | x < y && z < y      = y : localMaxima (z:xs)
+  | otherwise           = localMaxima (y:z:xs)
+localMaxima []          = []
+localMaxima [_]         = []
+localMaxima [_,_]       = []
