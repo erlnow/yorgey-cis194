@@ -101,17 +101,25 @@ every l n = case drop (n-1) l of
 --
 -- Solution:
 --
--- This version is a recursive solution. It checks for a local maxima in the
--- three first elements of @xs@: @x@, @y@ and @z@. If not it continues
--- searching for a local maxima in the tail of @xs@. If the second is a local
--- maximum it use cons operator and continues searching for the rest of
--- elements of xs, z cannot be a local maximum this time. 
+-- 'zip3' is a function that forms a list of 3-tuples given three lists. 'localMaxima'
+-- constructs a list of three consecutive elements given a list of 'Integer's, using
+-- this function. 
+-- @
+-- zip3 xs (drop 1 xs) (drop 2 xs)
+-- @
+--
+-- This list is filtered using 'filter' function that return a list of element that
+-- satisfies and argument.
+--
+-- @
+-- filter (\(x,y,z) -> x < y && y > z)
+-- @
+--
+-- At last, using map to return the second element of the 3-tuple that is the local
+-- maximum.
 
 -- |Returns a list of local maximum in a given list of 'Integer's.
 localMaxima :: [Integer] -> [Integer]
-localMaxima (x:y:z:xs)
-  | x < y && z < y      = y : localMaxima (z:xs)
-  | otherwise           = localMaxima (y:z:xs)
-localMaxima []          = []
-localMaxima [_]         = []
-localMaxima [_,_]       = []
+localMaxima xs = map (\(_,y,_) -> y)
+               . filter (\(x,y,z) -> x < y && y > z)
+               $ zip3 xs (drop 1 xs) (drop 2 xs)
