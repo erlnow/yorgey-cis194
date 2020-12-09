@@ -40,9 +40,13 @@ module Golf where
 -- For example:
 --
 -- >>> skips "ABCD"   == ["ABCD", "BD", "C", "D" ]
--- >>> skips "hello!" == ["hello!", "el", "l!", "l", "o", "!"]
+-- True
+-- >>> skips "hello!" == ["hello!", "el!", "l!", "l", "o", "!"]
+-- True
 -- >>> skips [1]      == [[1]]
+-- True
 -- >>> skips []       == []
+-- True
 --
 -- Solution:
 --
@@ -52,8 +56,8 @@ module Golf where
 -- length of @l@ I generate the element using my function to skip every @i@th
 -- element of the input list.
 --
--- 'every' drops @n-1@ elements and call recursively to choose next /n/th element,
--- building the list using the __cons__ operator @:@.
+-- 'every' drops @n-1@ elements and call itself recursively to choose next
+-- /n/th element, building the list using the __cons__ operator @:@.
 
 -- |function that expects a list and return a list of lists. The first element
 -- is always the input list, the second element contains every second from the
