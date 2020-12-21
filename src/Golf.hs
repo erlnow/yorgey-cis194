@@ -12,6 +12,8 @@
 
 module Golf where
 
+import Data.List (transpose)
+
 -- * Code Golf!
 --
 -- $hw
@@ -21,7 +23,7 @@ module Golf where
 -- signature which accomplishes the given task and is /as short as possible/.
 --
 -- original pdf is placed in @doc/03-rec-poly.lhs@.
---
+
 -- ** Exercise 1 Hopscotch
 --
 -- $ex1
@@ -123,3 +125,65 @@ localMaxima :: [Integer] -> [Integer]
 localMaxima xs = map (\(_,y,_) -> y)
                . filter (\(x,y,z) -> x < y && y > z)
                $ zip3 xs (drop 1 xs) (drop 2 xs)
+
+-- ** Exercise 3: Histogram
+--
+-- $ex3
+--
+-- For this task, write a function
+--
+-- @
+-- histogram :: [Integer] -> String
+-- @
+--
+-- which takes as input a list of 'Integer's between 0 and 9 (inclusive),
+-- and outputs a vertical histogram showing how many of each number
+-- where in the input list. You may assume that the input list does not
+-- contain any numbers less than zero or greater than 9 (that is, it does
+-- not matter what your function does if the input does contains such
+-- numbers). Your output must exactly match the output shown in the examples
+-- bellow.
+--
+-- >>> histogram [1,1,1,5]
+--  *
+--  *
+--  *   *
+-- ==========
+-- 0123456789
+-- 
+-- >>> histogram [1,4,5,4,6,6,3,4,2,4,9]
+--     *
+--     *
+--     * *
+--  ******  *
+-- ==========
+-- 0123456789
+
+-- |It counts the number of a given element in a list
+count :: Eq a => a -> [a] -> Int
+count x = length . filter (==x)
+
+-- |Search elements of a given list in another list and returns how much
+-- given elements appear in the second list as a list.
+counts :: Eq a => [a] -> [a] -> [Int]
+counts es xs = [count x xs | x <- es]
+
+-- |Create a String with a number of "*"
+asterisks :: Int -> [Char]
+asterisks x = replicate x '*' ++ repeat ' '
+
+-- til this point I can create a vertical histogram. How can I translate
+-- to horizontal?
+--
+-- >>> putStrLn $ unlines $ map asteriks $ counts [0..9] [1,4,5,6,6,3,4,2,4,9] 
+--
+-- adding spaces to the final to every string
+
+-- | print a horizontal histogram
+-- histogram :: [Int] -> String
+histogram xs = putStrLn $ bars ++ "----------\n0123456789\n"
+  where bars = unlines
+             . reverse
+             . takeWhile (any (/= ' '))
+             . transpose
+             . map asterisks $ counts [0..9] xs
