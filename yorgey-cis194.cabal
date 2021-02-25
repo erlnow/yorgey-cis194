@@ -4,10 +4,10 @@ cabal-version: 1.18
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 87de2a02fdb0921197414f5ff0a941a690dc02c8c8fd123930c4e221faf6abbd
+-- hash: 3c781a866eca0625dd375acc36b73a193e19808fc9be7a851743be1e4a8bd435
 
 name:           yorgey-cis194
-version:        0.4.0.0
+version:        0.4.0.1
 synopsis:       Brent Yorgey CIS 194: Introduction to Haskell (Spring 2013)
 description:    Please see the README on GitHub at <https://github.com/erlnow/yorgey-cis194#readme>
 category:       Learning
@@ -61,6 +61,7 @@ library
       Cards
       Golf
       Hanoi
+      HigerOrder
       Intro
       Log
       LogAnalysis

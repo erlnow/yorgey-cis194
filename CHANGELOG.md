@@ -1,5 +1,8 @@
 # Revision history for yorgey-cis194
 
+## 0.4.0.1 -- 2021-02-25 Homework 3, Wholemeal programming
+
+### Added
 ## 0.4.0.0 -- 2021-02-25 Homework 3
 
 ### Added
