@@ -1,5 +1,12 @@
 # Revision history for yorgey-cis194
 
+## 0.4.0.0 -- 2021-02-25 Homework 3
+
+### Added
+
+* doc/04-higher-order.lhs -- CIS 194 Week 4
+* doc/04-higher-order.pdf -- CIS 194 Homework 4
+
 ## 0.3.0.3 -- 2020-12-21 Homework 3
 
 ### Added 
