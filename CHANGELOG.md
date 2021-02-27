@@ -1,8 +1,24 @@
 # Revision history for yorgey-cis194
 
-## 0.4.0.1 -- 2021-02-25 Homework 3, Wholemeal programming
+## 0.4.1.0 -- 2021-02-26 Homework 3, Wholemeal programming
+
+### Modified
+
+* src/HigerOrder.hs     -- Exercise 1
+* CHANGELOG.md          -- Fix an error
+
+## 0.4.1.0 -- 2021-02-25 Homework 3, Wholemeal programming
+
+### Modified
+
+* src/HigerOrder.hs      -- Exercise 1, statement
+
+## 0.4.0.1 -- 2021-02-25 Homework 3
 
 ### Added
+
+* src/HigerOrder.hs      -- Assignment 1, haddock structure
+
 ## 0.4.0.0 -- 2021-02-25 Homework 3
 
 ### Added
